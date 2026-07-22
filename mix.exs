@@ -12,17 +12,22 @@ defmodule Meilisearch.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
-        coveralls: :test,
-        "coveralls.details": :test,
-        "coveralls.post": :test,
-        "coveralls.html": :test
-      ],
       dialyzer: dialyzer(),
       elixirc_paths: elixirc_paths(Mix.env()),
       description: description(),
       package: package(),
       docs: docs()
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: [
+        coveralls: :test,
+        "coveralls.details": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
