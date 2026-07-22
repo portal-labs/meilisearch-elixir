@@ -121,4 +121,16 @@ defmodule Meilisearch.IndexTest do
       assert {:ok, true} = Indexes.exists?(@test_index)
     end
   end
+
+  describe "Indexes.swap/2" do
+    test "successfully swaps indexes" do
+      wait_for_task(Indexes.create("swap_1"))
+      wait_for_task(Indexes.create("swap_2"))
+      assert wait_for_task_success(Indexes.swap("swap_1", "swap_2"))
+    end
+
+    test "returns error if index doesnt exist" do
+      assert wait_for_task_failure(Indexes.swap("missing_1", "missing_2"))
+    end
+  end
 end

@@ -167,4 +167,8 @@ defmodule Meilisearch.Indexes do
       _ -> {:error, "Unknown error has occured"}
     end
   end
+
+  def swap(a, b) do
+    HTTP.post_request("swap-indexes", [%{"indexes" => [a, b]}])
+  end
 end
